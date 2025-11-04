@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Thông tin tài khoản - Shop</title>
+
+<!-- Font đẹp -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg1: #0f172a;
+    --bg2: #0b1220;
+    --card: #0f172a;
+    --accent: #ff6b6b;
+    --accent2: #6b9bff;
+    --glass: rgba(255,255,255,0.04);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(135deg,var(--bg1),var(--bg2));
+    color: #eef2ff;
+    padding:24px;
+  }
+
+  .card {
+    width: 360px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    box-shadow: 0 6px 30px rgba(2,6,23,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .header {
+    padding:18px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  }
+
+  .avatar {
+    width:72px;
+    height:72px;
+    border-radius:12px;
+    overflow:hidden;
+    flex-shrink:0;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: linear-gradient(135deg,#111827,#0b1220);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  .info {
+    flex:1;
+  }
+  .name {
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:0.2px;
+    margin-bottom:4px;
+  }
+  .meta {
+    font-size:12px;
+    color: #b6c0d9;
+  }
+
+  .balances {
+    display:flex;
+    gap:12px;
+    padding:16px;
+  }
+
+  .bal {
+    flex:1;
+    border-radius:12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+    padding:12px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    border: 1px solid rgba(255,255,255,0.025);
+  }
+  .icon-wrap {
+    width:52px;
+    height:52px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    box-shadow: inset 0 -6px 18px rgba(0,0,0,0.5);
+  }
+  .bal-text {
+    flex:1;
+  }
+  .bal-title {
+    font-size:12px;
+    color:#cdd6f7;
+    margin-bottom:6px;
+  }
+  .bal-value {
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:0.6px;
+  }
+
+  .footer {
+    padding:14px 16px;
+    border-top: 1px solid rgba(255,255,255,0.02);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.005), rgba(255,255,255,0.01));
+  }
+  .btn {
+    padding:10px 14px;
+    border-radius:10px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border: none;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow: 0 6px 18px rgba(107,155,255,0.12);
+  }
+  .muted {
+    color:#9aa6d6;
+    font-size:13px;
+  }
+
+  /* small responsiveness */
+  @media (max-width:420px){
+    .card{ width:100%;}
+    .balances {flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<div class="card" id="shop-card"
+     data-username="Hắc Hàn Thiên Băng"
+     data-avatar=""
+     data-robux="39,294"
+     data-diamonds="3">
+  <div class="header">
+    <div class="avatar" id="avatar">
+      <!-- Default SVG avatar; replace by setting data-avatar attribute to an image URL -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="none">
+        <rect width="24" height="24" rx="6" fill="#111827"/>
+        <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="#24324a"/>
+        <path d="M3 21c0-3.866 3.582-7 8-7s8 3.134 8 7H3z" fill="#24324a"/>
+      </svg>
+    </div>
+
+    <div class="info">
+      <div class="name" id="display-name">Tên Shop</div>
+      <div class="meta">ID: <span id="user-id">#000123</span> · <span class="muted">Hoạt động: Online</span></div>
+    </div>
+  </div>
+
+  <div class="balances">
+    <!-- Robux -->
+    <div class="bal" title="Robux balance">
+      <div class="icon-wrap" aria-hidden="true">
+        <!-- Robux-like SVG icon (stylized coin/gem) -->
+        <svg width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Robux">
+          <defs>
+            <linearGradient id="rgrad" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#ffd37a"/>
+              <stop offset="1" stop-color="#ff9e54"/>
+            </linearGradient>
+          </defs>
+          <circle cx="12" cy="12" r="10" fill="url(#rgrad)"/>
+          <path d="M7.8 9.9L12 7.2l4.2 2.7-4.2 2.7L7.8 9.9z" fill="#ffffff" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="bal-text">
+        <div class="bal-title">Robux</div>
+        <div class="bal-value" id="robux-count">0</div>
+      </div>
+    </div>
+
+    <!-- Diamonds (Free Fire) -->
+    <div class="bal" title="Kim cương Free Fire">
+      <div class="icon-wrap" aria-hidden="true">
+        <!-- Diamond SVG -->
+        <svg width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diamond">
+          <defs>
+            <linearGradient id="dgrad" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#8fe3ff"/>
+              <stop offset="1" stop-color="#6bb8ff"/>
+            </linearGradient>
+          </defs>
+          <rect width="24" height="24" rx="6" fill="#0b1220"/>
+          <path d="M12 4l5 6-5 8-5-8 5-6z" fill="url(#dgrad)"/>
+          <path d="M7 10l5 8 5-8" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.6"/>
+        </svg>
+      </div>
+      <div class="bal-text">
+        <div class="bal-title">Kim cương (FF)</div>
+        <div class="bal-value" id="diamond-count">0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="muted">Cập nhật: <span id="last-updated">—</span></div>
+    <button class="btn" id="refresh-btn">Làm mới</button>
+  </div>
+</div>
+
+<script>
+  // ---- Configurable: lấy dữ liệu từ attributes của .card
+  const card = document.getElementById('shop-card');
+  const username = card.getAttribute('data-username') || 'Tên Shop';
+  const avatarUrl = card.getAttribute('data-avatar') || '';
+  const robux = Number(card.getAttribute('data-robux') || 0);
+  const diamonds = Number(card.getAttribute('data-diamonds') || 0);
+
+  // set basics
+  document.getElementById('display-name').textContent = username;
+  document.getElementById('robux-count').textContent = '0';
+  document.getElementById('diamond-count').textContent = '0';
+  document.getElementById('last-updated').textContent = new Date().toLocaleString();
+
+  // if avatarUrl is set, replace default SVG with image
+  if (avatarUrl) {
+    const avBox = document.getElementById('avatar');
+    avBox.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = avatarUrl;
+    img.alt = username + ' avatar';
+    img.onerror = () => { /* keep default if failed */ };
+    avBox.appendChild(img);
+  }
+
+  // nice counting animation function (no external libs)
+  function animateCount(el, from, to, duration = 900) {
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = t<0.5 ? 2*t*t : -1 + (4-2*t)*t; // ease
+      const val = Math.round(from + (to - from) * eased);
+      el.textContent = val.toLocaleString();
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // initialize counts
+  animateCount(document.getElementById('robux-count'), 0, robux, 1000);
+  animateCount(document.getElementById('diamond-count'), 0, diamonds, 1000);
+
+  // refresh button (demo only)
+  document.getElementById('refresh-btn').addEventListener('click', () => {
+    // In real use replace with fetch() to server
+    document.getElementById('last-updated').textContent = new Date().toLocaleString();
+    // small demo animation (bump)
+    animateCount(document.getElementById('robux-count'), robux, robux, 600);
+    animateCount(document.getElementById('diamond-count'), diamonds, diamonds, 600);
+  });
+
+  // ---- How to update values programmatically:
+  // To change name/avatar/balances dynamically, modify DOM or change data- attributes and re-run animations.
+  // Example:
+  // card.setAttribute('data-robux', '9999');
+  // animateCount(document.getElementById('robux-count'), currentValue, 9999, 800);
+</script>
+
+</body>
+</html>
